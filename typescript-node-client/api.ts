@@ -957,6 +957,10 @@ export class RichMessage {
     */
     'text'?: string;
     /**
+     * Optional: listpicker (buttons)
+     */
+    'listpicker'?: ListPicker;
+    /**
     * Optional: the header for a rich card
     */
     'header'?: string;
@@ -996,6 +1000,11 @@ export class RichMessage {
             "name": "text",
             "baseName": "text",
             "type": "string"
+        },
+        {
+            "name": "listpicker",
+            "baseName": "listpicker",
+            "type": "ListPicker"
         },
         {
             "name": "header",
@@ -1043,6 +1052,60 @@ export class RichMessage {
     }
 }
 
+/**
+ * List Picker (buttons) for rich content
+ */
+export class ListPicker {
+    /**
+    * A plain text message for the list picker (similar to message 'text').
+    */
+    'label'?: string;
+    /**
+     * List picker button options
+     */
+    'options'?: Array<ListPickerOptions>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "label",
+            "baseName": "label",
+            "type": "string"
+        },
+        {
+            "name": "options",
+            "baseName": "options",
+            "type": "Array<ListPickerOptions>"
+        }   ];
+
+    static getAttributeTypeMap() {
+        return ListPicker.attributeTypeMap;
+    }
+}
+
+/**
+ * List Picker options for List Picker
+ */
+export class ListPickerOptions {
+    /**
+    * The text to display on the listpicker's button
+    */
+    'label'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "label",
+            "baseName": "label",
+            "type": "string"
+        }   ];
+
+    static getAttributeTypeMap() {
+        return ListPickerOptions.attributeTypeMap;
+    }
+}
 /**
 * Requests the received to share his/her location
 */
